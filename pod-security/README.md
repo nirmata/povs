@@ -13,11 +13,6 @@ Use kustomize to install the baseline or restricted profiles.
 
 **NOTE**: The policies are updated so that they apply ONLY to kyverno-test namespace. 
 
-Install baseline policies
-```sh
-kubectl apply -k baseline/
-```
-
 Install both baseline and restricted policies
 ```sh
 kubectl apply -k .
