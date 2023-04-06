@@ -24,6 +24,8 @@ spec:
         - resources:
             kinds:
               - Pod
+            namespaces:
+              - kyverno-test
       validate:
         message: >-
           Only the following types of volumes may be used: configMap, csi, downwardAPI,
