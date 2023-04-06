@@ -24,6 +24,8 @@ spec:
         - resources:
             kinds:
               - Pod
+            namespaces:
+              - kyverno-test
       validate:
         message: >-
           The only permitted hostPorts are in the range 5000-6000.
