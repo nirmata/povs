@@ -23,6 +23,8 @@ spec:
         - resources:
             kinds:
               - Pod
+            namespaces:
+              - kyverno-test
       validate:
         message: >-
           HostPath volumes are forbidden. The field spec.volumes[*].hostPath must be unset.
