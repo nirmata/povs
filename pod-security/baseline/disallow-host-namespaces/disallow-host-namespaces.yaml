@@ -24,6 +24,8 @@ spec:
         - resources:
             kinds:
               - Pod
+            namespaces:
+              - kyverno-test
       validate:
         message: >-
           Sharing the host namespaces is disallowed. The fields spec.hostNetwork,
