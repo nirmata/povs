@@ -27,3 +27,7 @@ Install restricted profile in enforce mode
 ```sh
 kubectl apply -k enforce/
 ```
+Verify the policies 
+```sh
+kubectl get cpol
+```
