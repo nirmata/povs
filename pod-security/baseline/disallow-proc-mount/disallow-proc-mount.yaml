@@ -24,6 +24,8 @@ spec:
         - resources:
             kinds:
               - Pod
+            namespaces:
+              - kyverno-test
       validate:
         message: >-
           Changing the proc mount from the default is not allowed. The fields
