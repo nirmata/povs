@@ -23,6 +23,8 @@ spec:
         - resources:
             kinds:
               - Pod
+            namespaces:
+              - kyverno-test
       validate:
         message: >-
           Use of custom Seccomp profiles is disallowed. The fields
