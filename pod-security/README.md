@@ -11,6 +11,8 @@ NOTE: the `proc-mount` pod may execute as non-default values for `securityContex
 ## Installing the Pod Security Standard policies
 Use kustomize to install the baseline or restricted profiles.
 
+NOTE: The policies are updated so that they apply only to kyverno-test namespace. 
+
 Install baseline policies
 ```sh
 kubectl apply -k baseline/
