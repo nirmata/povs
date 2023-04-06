@@ -22,6 +22,8 @@ spec:
         - resources:
             kinds:
               - Pod
+            namespaces:
+              - kyverno-test
       validate:
         message: >-
           Running as root is not allowed. The fields spec.securityContext.runAsUser,
