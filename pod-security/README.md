@@ -1,7 +1,7 @@
 # Pod Security Standards
 
 
-These are a collection of policies which implement the Baseline and Restricted profiles of the Kubernetes Pod Security Standards. [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/).
+These are a collection of policies which implement the Baseline and Restricted profiles of the Kubernetes [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/).
 
 The `Baseline/Default` profile is minimally restrictive and denies the most common vulnerabilities while the `Restricted` profile is more heavily restrictive but follows many more of the common security best practices for Pods.
 
