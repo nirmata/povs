@@ -22,6 +22,8 @@ spec:
         - resources:
             kinds:
               - Pod
+            namespaces:
+              - kyverno-test
       validate:
         message: >-
           Privilege escalation is disallowed. The fields
