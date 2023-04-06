@@ -31,3 +31,7 @@ Verify the policies
 ```sh
 kubectl get cpol
 ```
+Verify the policy reports
+```sh
+kubectl get polr -n kyverno-test
+```
