@@ -23,6 +23,8 @@ spec:
         - resources:
             kinds:
               - Pod
+            namespaces:
+              - kyverno-test
       preconditions:
         all:
         - key: "{{ request.operation || 'BACKGROUND' }}"
@@ -45,6 +47,8 @@ spec:
         - resources:
             kinds:
               - Pod
+            namespaces:
+              - kyverno-test
       preconditions:
         all:
         - key: "{{ request.operation || 'BACKGROUND' }}"
