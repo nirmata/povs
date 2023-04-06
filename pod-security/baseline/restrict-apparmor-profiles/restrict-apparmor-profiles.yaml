@@ -25,6 +25,8 @@ spec:
         - resources:
             kinds:
               - Pod
+            namespaces:
+              - kyverno-test
       validate:
         message: >-
           Specifying other AppArmor profiles is disallowed. The annotation
