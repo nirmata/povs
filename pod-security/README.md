@@ -21,6 +21,34 @@ Verify the policies
 ```sh
 kubectl get cpol
 ```
+Now try to run an insecure workload using below command. You will see that the pod will be blocked by Pod Security Policies as the policies are deployed in `Enforce` mode
+```sh
+$ kubectl run nginx --image nginx --dry-run=server
+Error from server: admission webhook "validate.kyverno.svc-fail" denied the request:
+
+policy Pod/default/nginx for resource violations:
+
+disallow-capabilities-strict:
+  require-drop-all: 'validation failure: Containers must drop `ALL` capabilities.'
+disallow-privilege-escalation:
+  privilege-escalation: 'validation error: Privilege escalation is disallowed. The
+    fields spec.containers[*].securityContext.allowPrivilegeEscalation, spec.initContainers[*].securityContext.allowPrivilegeEscalation,
+    and spec.ephemeralContainers[*].securityContext.allowPrivilegeEscalation must
+    be set to `false`. rule privilege-escalation failed at path /spec/containers/0/securityContext/'
+require-run-as-nonroot:
+  run-as-non-root: 'validation error: Running as root is not allowed. Either the field
+    spec.securityContext.runAsNonRoot must be set to `true`, or the fields spec.containers[*].securityContext.runAsNonRoot,
+    spec.initContainers[*].securityContext.runAsNonRoot, and spec.ephemeralContainers[*].securityContext.runAsNonRoot
+    must be set to `true`. rule run-as-non-root[0] failed at path /spec/securityContext/runAsNonRoot/
+    rule run-as-non-root[1] failed at path /spec/containers/0/securityContext/'
+restrict-seccomp-strict:
+  check-seccomp-strict: 'validation error: Use of custom Seccomp profiles is disallowed.
+    The fields spec.securityContext.seccompProfile.type, spec.containers[*].securityContext.seccompProfile.type,
+    spec.initContainers[*].securityContext.seccompProfile.type, and spec.ephemeralContainers[*].securityContext.seccompProfile.type
+    must be set to `RuntimeDefault` or `Localhost`. rule check-seccomp-strict[0] failed
+    at path /spec/securityContext/seccompProfile/ rule check-seccomp-strict[1] failed
+    at path /spec/containers/0/securityContext/'
+```sh
 Verify the policy reports
 ```sh
 kubectl get polr -n kyverno-test
