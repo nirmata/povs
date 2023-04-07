@@ -17,11 +17,6 @@ Install both baseline and restricted policies in `Enforce` mode using kustomize.
 ```sh
 kustomize build https://github.com/kyverno/policies/pod-security/enforce | kubectl apply -f - 
 ```
-
-Install restricted profile in enforce mode
-```sh
-kubectl apply -k enforce/
-```
 Verify the policies 
 ```sh
 kubectl get cpol
