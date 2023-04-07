@@ -112,61 +112,26 @@ restrict-volume-types            true         Audit             true    27m
 ```
 Now try to deploy the insecure workload again. You will see that it will pod will get deployed as the policies are deployed in `Audit` mode. The violations will be reported in the policy reports. 
 ```sh
-kubectl run nginx --image nginx --dry-run=server
+kubectl -n kyverno-test run nginx --image nginx --dry-run=server
 pod/nginx created (server dry run)
 
- kubectl get polr -A
-NAMESPACE            NAME                                  PASS   FAIL   WARN   ERROR   SKIP   AGE
-kube-system          cpol-disallow-capabilities            11     3      0      0       0      37m
-kube-system          cpol-disallow-capabilities-strict     11     17     0      0       0      37m
-kube-system          cpol-disallow-host-namespaces         4      10     0      0       0      37m
-kube-system          cpol-disallow-host-path               4      10     0      0       0      37m
-kube-system          cpol-disallow-host-ports              14     0      0      0       0      37m
-kube-system          cpol-disallow-host-process            14     0      0      0       0      37m
-kube-system          cpol-disallow-privilege-escalation    4      10     0      0       0      37m
-kube-system          cpol-disallow-privileged-containers   11     3      0      0       0      37m
-kube-system          cpol-disallow-proc-mount              14     0      0      0       0      37m
-kube-system          cpol-disallow-selinux                 28     0      0      0       0      37m
-kube-system          cpol-require-run-as-non-root-user     14     0      0      0       0      37m
-kube-system          cpol-require-run-as-nonroot           0      14     0      0       0      37m
-kube-system          cpol-restrict-apparmor-profiles       14     0      0      0       0      37m
-kube-system          cpol-restrict-seccomp                 14     0      0      0       0      37m
-kube-system          cpol-restrict-seccomp-strict          4      10     0      0       0      37m
-kube-system          cpol-restrict-sysctls                 14     0      0      0       0      37m
-kube-system          cpol-restrict-volume-types            4      10     0      0       0      37m
-kyverno              cpol-disallow-capabilities            6      0      0      0       0      37m
-kyverno              cpol-disallow-capabilities-strict     12     0      0      0       0      37m
-kyverno              cpol-disallow-host-namespaces         6      0      0      0       0      37m
-kyverno              cpol-disallow-host-path               6      0      0      0       0      37m
-kyverno              cpol-disallow-host-ports              6      0      0      0       0      37m
-kyverno              cpol-disallow-host-process            6      0      0      0       0      37m
-kyverno              cpol-disallow-privilege-escalation    6      0      0      0       0      37m
-kyverno              cpol-disallow-privileged-containers   6      0      0      0       0      37m
-kyverno              cpol-disallow-proc-mount              6      0      0      0       0      37m
-kyverno              cpol-disallow-selinux                 12     0      0      0       0      37m
-kyverno              cpol-require-run-as-non-root-user     6      0      0      0       0      37m
-kyverno              cpol-require-run-as-nonroot           6      0      0      0       0      37m
-kyverno              cpol-restrict-apparmor-profiles       6      0      0      0       0      37m
-kyverno              cpol-restrict-seccomp                 6      0      0      0       0      37m
-kyverno              cpol-restrict-seccomp-strict          6      0      0      0       0      37m
-kyverno              cpol-restrict-sysctls                 6      0      0      0       0      37m
-kyverno              cpol-restrict-volume-types            6      0      0      0       0      37m
-local-path-storage   cpol-disallow-capabilities            3      0      0      0       0      37m
-local-path-storage   cpol-disallow-capabilities-strict     3      3      0      0       0      37m
-local-path-storage   cpol-disallow-host-namespaces         3      0      0      0       0      37m
-local-path-storage   cpol-disallow-host-path               3      0      0      0       0      37m
-local-path-storage   cpol-disallow-host-ports              3      0      0      0       0      37m
-local-path-storage   cpol-disallow-host-process            3      0      0      0       0      37m
-local-path-storage   cpol-disallow-privilege-escalation    0      3      0      0       0      37m
-local-path-storage   cpol-disallow-privileged-containers   3      0      0      0       0      37m
-local-path-storage   cpol-disallow-proc-mount              3      0      0      0       0      37m
-local-path-storage   cpol-disallow-selinux                 6      0      0      0       0      37m
-local-path-storage   cpol-require-run-as-non-root-user     3      0      0      0       0      37m
-local-path-storage   cpol-require-run-as-nonroot           0      3      0      0       0      37m
-local-path-storage   cpol-restrict-apparmor-profiles       3      0      0      0       0      37m
-local-path-storage   cpol-restrict-seccomp                 3      0      0      0       0      37m
-local-path-storage   cpol-restrict-seccomp-strict          0      3      0      0       0      37m
-local-path-storage   cpol-restrict-sysctls                 3      0      0      0       0      37m
-local-path-storage   cpol-restrict-volume-types            3      0      0      0       0      37m
+ kubectl get polr -Akyverno-test   cpol-disallow-capabilities            1      0      0      0       0      4m7s
+kyverno-test   cpol-disallow-capabilities-strict     1      1      0      0       0      4m7s
+kyverno-test   cpol-disallow-host-namespaces         1      0      0      0       0      4m7s
+kyverno-test   cpol-disallow-host-path               1      0      0      0       0      4m7s
+kyverno-test   cpol-disallow-host-ports              1      0      0      0       0      4m7s
+kyverno-test   cpol-disallow-host-process            1      0      0      0       0      4m7s
+kyverno-test   cpol-disallow-privilege-escalation    0      1      0      0       0      4m7s
+kyverno-test   cpol-disallow-privileged-containers   1      0      0      0       0      4m7s
+kyverno-test   cpol-disallow-proc-mount              1      0      0      0       0      4m7s
+kyverno-test   cpol-disallow-selinux                 2      0      0      0       0      4m7s
+kyverno-test   cpol-require-run-as-non-root-user     1      0      0      0       0      4m7s
+kyverno-test   cpol-require-run-as-nonroot           0      1      0      0       0      4m7s
+kyverno-test   cpol-restrict-apparmor-profiles       1      0      0      0       0      4m7s
+kyverno-test   cpol-restrict-seccomp                 1      0      0      0       0      4m7s
+kyverno-test   cpol-restrict-seccomp-strict          0      1      0      0       0      4m7s
+kyverno-test   cpol-restrict-sysctls                 1      0      0      0       0      4m7s
+kyverno-test   cpol-restrict-volume-types            1      0      0      0       0      4m7s
+
 
 ```
