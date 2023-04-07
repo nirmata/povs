@@ -21,7 +21,7 @@ Verify the policies
 ```sh
 kubectl get cpol
 ```
-Now try to run an insecure workload using below command. You will see that the pod will be blocked by Pod Security Policies as the policies are deployed in `Enforce` mode
+Now try to run an insecure workload using below command. You will see that the pod will be blocked by Pod Security Policies as the policies are deployed in the `Enforce` mode
 ```sh
 $ kubectl run nginx --image nginx --dry-run=server
 Error from server: admission webhook "validate.kyverno.svc-fail" denied the request:
