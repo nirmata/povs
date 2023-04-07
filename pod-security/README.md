@@ -11,7 +11,7 @@ The `Baseline/Default` profile is minimally restrictive and denies the most comm
 ## Installing the Pod Security Standard policies
 Use kustomize to install the baseline and restricted profiles.
 
-**NOTE**: The policies are updated so that they apply ONLY to kyverno-test namespace. 
+**NOTE**: The policies are updated so that they apply ONLY to `kyverno-test` namespace. 
 
 Install both baseline and restricted policies in `Enforce` mode using kustomize. You can install kustomize from [here](https://kubectl.docs.kubernetes.io/installation/kustomize/) if needed. 
 ```sh
