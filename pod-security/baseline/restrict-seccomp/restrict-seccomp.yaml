@@ -15,7 +15,7 @@ metadata:
       set to `RuntimeDefault` or `Localhost`.
 spec:
   background: true
-  validationFailureAction: audit
+  validationFailureAction: Enforce
   rules:
     - name: check-seccomp
       match:
