@@ -57,8 +57,9 @@ restrict-sysctls                 true         Enforce           true    11s
 restrict-volume-types            true         Enforce           true    10s
 
 ```
-Now try to run an insecure workload using below command. You will see that the pod will be blocked by Pod Security Policies as the policies are deployed in the `Enforce` mode
+Now try to run an insecure workload in `kyverno-test` namespace using below command. You will see that the pod will be blocked by Pod Security Policies as the policies are deployed in the `Enforce` mode
 ```sh
+$ kubectl create ns kyverno-test
 $ kubectl -n kyverno-test run nginx --image nginx --dry-run=server
 Error from server: admission webhook "validate.kyverno.svc-fail" denied the request:
 
