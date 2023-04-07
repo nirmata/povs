@@ -67,7 +67,48 @@ restrict-seccomp-strict:
     at path /spec/securityContext/seccompProfile/ rule check-seccomp-strict[1] failed
     at path /spec/containers/0/securityContext/'
 ```
+Now patch the kyverno policies using the command below to deploy them in `Audit` mode. Verify the policies are deployed in `Audit` mode
 ```sh
+for j in $(kubectl get cpol --no-headers | awk '{print $1}'); do kubectl patch cpol $j --type='json' -p='[{"op": "replace", "path": "/spec/validationFailureAction", "value":"Audit"}]';done
+clusterpolicy.kyverno.io/disallow-capabilities patched
+clusterpolicy.kyverno.io/disallow-capabilities-strict patched
+clusterpolicy.kyverno.io/disallow-host-namespaces patched
+clusterpolicy.kyverno.io/disallow-host-path patched
+clusterpolicy.kyverno.io/disallow-host-ports patched
+clusterpolicy.kyverno.io/disallow-host-process patched
+clusterpolicy.kyverno.io/disallow-privilege-escalation patched
+clusterpolicy.kyverno.io/disallow-privileged-containers patched
+clusterpolicy.kyverno.io/disallow-proc-mount patched
+clusterpolicy.kyverno.io/disallow-selinux patched
+clusterpolicy.kyverno.io/require-run-as-non-root-user patched
+clusterpolicy.kyverno.io/require-run-as-nonroot patched
+clusterpolicy.kyverno.io/restrict-apparmor-profiles patched
+clusterpolicy.kyverno.io/restrict-seccomp patched
+clusterpolicy.kyverno.io/restrict-seccomp-strict patched
+clusterpolicy.kyverno.io/restrict-sysctls patched
+clusterpolicy.kyverno.io/restrict-volume-types patched
+
+$ kubectl get cpol
+NAME                             BACKGROUND   VALIDATE ACTION   READY   AGE
+disallow-capabilities            true         Audit             true    27m
+disallow-capabilities-strict     true         Audit             true    27m
+disallow-host-namespaces         true         Audit             true    27m
+disallow-host-path               true         Audit             true    27m
+disallow-host-ports              true         Audit             true    27m
+disallow-host-process            true         Audit             true    27m
+disallow-privilege-escalation    true         Audit             true    27m
+disallow-privileged-containers   true         Audit             true    27m
+disallow-proc-mount              true         Audit             true    27m
+disallow-selinux                 true         Audit             true    27m
+require-run-as-non-root-user     true         Audit             true    27m
+require-run-as-nonroot           true         Audit             true    27m
+restrict-apparmor-profiles       true         Audit             true    27m
+restrict-seccomp                 true         Audit             true    27m
+restrict-seccomp-strict          true         Audit             true    27m
+restrict-sysctls                 true         Audit             true    27m
+restrict-volume-types            true         Audit             true    27m
+
+```
 Verify the policy reports
 ```sh
 kubectl get polr -n kyverno-test
