@@ -16,6 +16,23 @@ Use kustomize to install the baseline and restricted profiles.
 Install both baseline and restricted policies in `Enforce` mode. 
 ```sh
 kubectl apply -k .
+clusterpolicy.kyverno.io/disallow-capabilities created
+clusterpolicy.kyverno.io/disallow-capabilities-strict created
+clusterpolicy.kyverno.io/disallow-host-namespaces created
+clusterpolicy.kyverno.io/disallow-host-path created
+clusterpolicy.kyverno.io/disallow-host-ports created
+clusterpolicy.kyverno.io/disallow-host-process created
+clusterpolicy.kyverno.io/disallow-privilege-escalation created
+clusterpolicy.kyverno.io/disallow-privileged-containers created
+clusterpolicy.kyverno.io/disallow-proc-mount created
+clusterpolicy.kyverno.io/disallow-selinux created
+clusterpolicy.kyverno.io/require-run-as-non-root-user created
+clusterpolicy.kyverno.io/require-run-as-nonroot created
+clusterpolicy.kyverno.io/restrict-apparmor-profiles created
+clusterpolicy.kyverno.io/restrict-seccomp created
+clusterpolicy.kyverno.io/restrict-seccomp-strict created
+clusterpolicy.kyverno.io/restrict-sysctls created
+clusterpolicy.kyverno.io/restrict-volume-types created
 ```
 Verify the policies 
 ```sh
