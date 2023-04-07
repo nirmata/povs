@@ -127,7 +127,7 @@ restrict-sysctls                 true         Audit             true    27m
 restrict-volume-types            true         Audit             true    27m
 
 ```
-Now try to deploy the insecure workload again. You will see that it will pod will get deployed as the policies are deployed in `Audit` mode. The violations will be reported in the policy reports. 
+Now try to deploy the insecure workload again. You will see that the pod will get deployed as the policies are deployed in `Audit` mode. The violations will be reported in the policy reports. 
 ```sh
  kubectl -n kyverno-test run nginx --image nginx --dry-run=server
 pod/nginx created (server dry run)
