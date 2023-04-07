@@ -133,5 +133,23 @@ Now try to deploy the insecure workload again. You will see that it will pod wil
 pod/nginx created (server dry run)
 
  kubectl get polr -A
+NAMESPACE      NAME                                  PASS   FAIL   WARN   ERROR   SKIP   AGE
+kyverno-test   cpol-disallow-capabilities            1      0      0      0       0      2m46s
+kyverno-test   cpol-disallow-capabilities-strict     1      1      0      0       0      2m46s
+kyverno-test   cpol-disallow-host-namespaces         1      0      0      0       0      2m46s
+kyverno-test   cpol-disallow-host-path               1      0      0      0       0      2m46s
+kyverno-test   cpol-disallow-host-ports              1      0      0      0       0      2m46s
+kyverno-test   cpol-disallow-host-process            1      0      0      0       0      2m46s
+kyverno-test   cpol-disallow-privilege-escalation    0      1      0      0       0      2m46s
+kyverno-test   cpol-disallow-privileged-containers   1      0      0      0       0      2m46s
+kyverno-test   cpol-disallow-proc-mount              1      0      0      0       0      2m46s
+kyverno-test   cpol-disallow-selinux                 2      0      0      0       0      2m46s
+kyverno-test   cpol-require-run-as-non-root-user     1      0      0      0       0      2m46s
+kyverno-test   cpol-require-run-as-nonroot           0      1      0      0       0      2m46s
+kyverno-test   cpol-restrict-apparmor-profiles       1      0      0      0       0      2m46s
+kyverno-test   cpol-restrict-seccomp                 1      0      0      0       0      2m46s
+kyverno-test   cpol-restrict-seccomp-strict          0      1      0      0       0      2m46s
+kyverno-test   cpol-restrict-sysctls                 1      0      0      0       0      2m46s
+kyverno-test   cpol-restrict-volume-types            1      0      0      0       0      2m46s
 
 ```
