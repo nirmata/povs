@@ -38,23 +38,24 @@ Verify the policies
 ```sh
 kubectl get cpol
 NAME                             BACKGROUND   VALIDATE ACTION   READY   AGE
-disallow-capabilities            true         enforce           true    20m
-disallow-capabilities-strict     true         enforce           true    20m
-disallow-host-namespaces         true         enforce           true    20m
-disallow-host-path               true         enforce           true    19m
-disallow-host-ports              true         enforce           true    19m
-disallow-host-process            true         enforce           true    19m
-disallow-privilege-escalation    true         enforce           true    19m
-disallow-privileged-containers   true         enforce           true    19m
-disallow-proc-mount              true         enforce           true    19m
-disallow-selinux                 true         enforce           true    19m
-require-run-as-non-root-user     true         enforce           true    19m
-require-run-as-nonroot           true         enforce           true    19m
-restrict-apparmor-profiles       true         enforce           true    19m
-restrict-seccomp                 true         enforce           true    19m
-restrict-seccomp-strict          true         enforce           true    19m
-restrict-sysctls                 true         enforce           true    19m
-restrict-volume-types            true         enforce             true    19m
+disallow-capabilities            true         Enforce           true    14s
+disallow-capabilities-strict     true         Enforce           true    13s
+disallow-host-namespaces         true         Enforce           true    13s
+disallow-host-path               true         Enforce           true    13s
+disallow-host-ports              true         Enforce           true    13s
+disallow-host-process            true         Enforce           true    13s
+disallow-privilege-escalation    true         Enforce           true    13s
+disallow-privileged-containers   true         Enforce           true    13s
+disallow-proc-mount              true         Enforce           true    12s
+disallow-selinux                 true         Enforce           true    12s
+require-run-as-non-root-user     true         Enforce           true    12s
+require-run-as-nonroot           true         Enforce           true    12s
+restrict-apparmor-profiles       true         Enforce           true    12s
+restrict-seccomp                 true         Enforce           true    11s
+restrict-seccomp-strict          true         Enforce           true    11s
+restrict-sysctls                 true         Enforce           true    11s
+restrict-volume-types            true         Enforce           true    10s
+
 ```
 Now try to run an insecure workload using below command. You will see that the pod will be blocked by Pod Security Policies as the policies are deployed in the `Enforce` mode
 ```sh
