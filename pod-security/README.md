@@ -13,9 +13,9 @@ Use kustomize to install the baseline and restricted profiles.
 
 **NOTE**: The policies are updated so that they apply ONLY to kyverno-test namespace. 
 
-Install both baseline and restricted policies in `Enforce` mode using kustomize. You can install kustomize from [here](https://kubectl.docs.kubernetes.io/installation/kustomize/) if needed. 
+Install both baseline and restricted policies in `Enforce` mode. 
 ```sh
-kustomize build https://github.com/kyverno/policies/pod-security/enforce | kubectl apply -f - 
+kubectl apply -k .
 ```
 Verify the policies 
 ```sh
