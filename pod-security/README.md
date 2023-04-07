@@ -15,7 +15,7 @@ Use kustomize to install the baseline and restricted profiles.
 
 Install both baseline and restricted policies in `Enforce` mode using kustomize. You can install kustomize from [here](https://kubectl.docs.kubernetes.io/installation/kustomize/) if needed. 
 ```sh
-kustomize build https://github.com/kyverno/policies/pod-security/enforce | kubectl apply -f - 
+kustomize build https://github.com/nirmata/povs/pod-security/enforce  | kubectl apply -f - 
 ```
 Verify the policies 
 ```sh
@@ -39,9 +39,10 @@ restrict-seccomp-strict          true         enforce           true    19m
 restrict-sysctls                 true         enforce           true    19m
 restrict-volume-types            true         enforce             true    19m
 ```
-Now try to run an insecure workload using below command. You will see that the pod will be blocked by Pod Security Policies as the policies are deployed in the `Enforce` mode
+Now try to run an insecure workload in `kyverno-test` namespace using below command. You will see that the pod will be blocked by Pod Security Policies as the policies are deployed in the `Enforce` mode
 ```sh
-$ kubectl run nginx --image nginx --dry-run=server
+$ kubectl create ns kyverno-test
+$ kubectl -n kyverno-test run nginx --image nginx --dry-run=server
 Error from server: admission webhook "validate.kyverno.svc-fail" denied the request:
 
 policy Pod/default/nginx for resource violations:
