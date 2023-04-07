@@ -115,7 +115,9 @@ Now try to deploy the insecure workload again. You will see that it will pod wil
 kubectl -n kyverno-test run nginx --image nginx --dry-run=server
 pod/nginx created (server dry run)
 
- kubectl get polr -Akyverno-test   cpol-disallow-capabilities            1      0      0      0       0      4m7s
+ kubectl get polr -A
+NAMESPACE      NAME                                  PASS   FAIL   WARN   ERROR   SKIP   AGE
+kyverno-test   cpol-disallow-capabilities            1      0      0      0       0      4m7s
 kyverno-test   cpol-disallow-capabilities-strict     1      1      0      0       0      4m7s
 kyverno-test   cpol-disallow-host-namespaces         1      0      0      0       0      4m7s
 kyverno-test   cpol-disallow-host-path               1      0      0      0       0      4m7s
@@ -132,6 +134,7 @@ kyverno-test   cpol-restrict-seccomp                 1      0      0      0     
 kyverno-test   cpol-restrict-seccomp-strict          0      1      0      0       0      4m7s
 kyverno-test   cpol-restrict-sysctls                 1      0      0      0       0      4m7s
 kyverno-test   cpol-restrict-volume-types            1      0      0      0       0      4m7s
+
 
 
 ```
