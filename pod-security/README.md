@@ -9,7 +9,7 @@ The `Baseline/Default` profile is minimally restrictive and denies the most comm
 **NOTE**: the `proc-mount` pod may execute as non-default values for `securityContext.procMount` require the `ProcMountType` feature flag to be enabled.
 
 ## Installing the Pod Security Standard policies
-Use kustomize to install the baseline or restricted profiles.
+Use kustomize to install the baseline and restricted profiles.
 
 **NOTE**: The policies are updated so that they apply ONLY to kyverno-test namespace. 
 
