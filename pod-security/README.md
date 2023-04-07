@@ -68,46 +68,48 @@ restrict-seccomp-strict:
     at path /spec/securityContext/seccompProfile/ rule check-seccomp-strict[1] failed
     at path /spec/containers/0/securityContext/'
 ```
-Now patch the kyverno policies using the command below to deploy them in `Audit` mode. Verify the policies are deployed in `Audit` mode
+Now deploy the kyverno policies using the command below to deploy them in `Audit` mode. Verify the policies are deployed in `Audit` mode
 ```sh
-for j in $(kubectl get cpol --no-headers | awk '{print $1}'); do kubectl patch cpol $j --type='json' -p='[{"op": "replace", "path": "/spec/validationFailureAction", "value":"Audit"}]';done
-clusterpolicy.kyverno.io/disallow-capabilities patched
-clusterpolicy.kyverno.io/disallow-capabilities-strict patched
-clusterpolicy.kyverno.io/disallow-host-namespaces patched
-clusterpolicy.kyverno.io/disallow-host-path patched
-clusterpolicy.kyverno.io/disallow-host-ports patched
-clusterpolicy.kyverno.io/disallow-host-process patched
-clusterpolicy.kyverno.io/disallow-privilege-escalation patched
-clusterpolicy.kyverno.io/disallow-privileged-containers patched
-clusterpolicy.kyverno.io/disallow-proc-mount patched
-clusterpolicy.kyverno.io/disallow-selinux patched
-clusterpolicy.kyverno.io/require-run-as-non-root-user patched
-clusterpolicy.kyverno.io/require-run-as-nonroot patched
-clusterpolicy.kyverno.io/restrict-apparmor-profiles patched
-clusterpolicy.kyverno.io/restrict-seccomp patched
-clusterpolicy.kyverno.io/restrict-seccomp-strict patched
-clusterpolicy.kyverno.io/restrict-sysctls patched
-clusterpolicy.kyverno.io/restrict-volume-types patched
+$ kustomize build https://github.com/nirmata/povs/pod-security  | kubectl apply -f -
+Warning: Validation failure actions enforce/audit are deprecated, use Enforce/Audit instead.
+clusterpolicy.kyverno.io/disallow-capabilities configured
+clusterpolicy.kyverno.io/disallow-capabilities-strict configured
+clusterpolicy.kyverno.io/disallow-host-namespaces configured
+clusterpolicy.kyverno.io/disallow-host-path configured
+clusterpolicy.kyverno.io/disallow-host-ports configured
+clusterpolicy.kyverno.io/disallow-host-process configured
+clusterpolicy.kyverno.io/disallow-privilege-escalation configured
+clusterpolicy.kyverno.io/disallow-privileged-containers configured
+clusterpolicy.kyverno.io/disallow-proc-mount configured
+clusterpolicy.kyverno.io/disallow-selinux configured
+clusterpolicy.kyverno.io/require-run-as-non-root-user configured
+clusterpolicy.kyverno.io/require-run-as-nonroot configured
+clusterpolicy.kyverno.io/restrict-apparmor-profiles configured
+clusterpolicy.kyverno.io/restrict-seccomp configured
+clusterpolicy.kyverno.io/restrict-seccomp-strict configured
+clusterpolicy.kyverno.io/restrict-sysctls configured
+clusterpolicy.kyverno.io/restrict-volume-types configured
+
 
 $ kubectl get cpol
 NAME                             BACKGROUND   VALIDATE ACTION   READY   AGE
-disallow-capabilities            true         Audit             true    27m
-disallow-capabilities-strict     true         Audit             true    27m
-disallow-host-namespaces         true         Audit             true    27m
-disallow-host-path               true         Audit             true    27m
-disallow-host-ports              true         Audit             true    27m
-disallow-host-process            true         Audit             true    27m
-disallow-privilege-escalation    true         Audit             true    27m
-disallow-privileged-containers   true         Audit             true    27m
-disallow-proc-mount              true         Audit             true    27m
-disallow-selinux                 true         Audit             true    27m
-require-run-as-non-root-user     true         Audit             true    27m
-require-run-as-nonroot           true         Audit             true    27m
-restrict-apparmor-profiles       true         Audit             true    27m
-restrict-seccomp                 true         Audit             true    27m
-restrict-seccomp-strict          true         Audit             true    27m
-restrict-sysctls                 true         Audit             true    27m
-restrict-volume-types            true         Audit             true    27m
+disallow-capabilities            true         audit             true    34s
+disallow-capabilities-strict     true         audit             true    34s
+disallow-host-namespaces         true         audit             true    33s
+disallow-host-path               true         audit             true    33s
+disallow-host-ports              true         audit             true    33s
+disallow-host-process            true         audit             true    33s
+disallow-privilege-escalation    true         audit             true    32s
+disallow-privileged-containers   true         audit             true    32s
+disallow-proc-mount              true         audit             true    31s
+disallow-selinux                 true         audit             true    31s
+require-run-as-non-root-user     true         audit             true    31s
+require-run-as-nonroot           true         audit             true    30s
+restrict-apparmor-profiles       true         audit             true    30s
+restrict-seccomp                 true         audit             true    30s
+restrict-seccomp-strict          true         audit             true    29s
+restrict-sysctls                 true         audit             true    29s
+restrict-volume-types            true         audit             true    29s
 
 ```
 Now try to deploy the insecure workload again. You will see that it will pod will get deployed as the policies are deployed in `Audit` mode. The violations will be reported in the policy reports. 
