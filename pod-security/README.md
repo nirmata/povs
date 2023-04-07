@@ -20,6 +20,24 @@ kustomize build https://github.com/kyverno/policies/pod-security/enforce | kubec
 Verify the policies 
 ```sh
 kubectl get cpol
+NAME                             BACKGROUND   VALIDATE ACTION   READY   AGE
+disallow-capabilities            true         enforce           true    20m
+disallow-capabilities-strict     true         enforce           true    20m
+disallow-host-namespaces         true         enforce           true    20m
+disallow-host-path               true         enforce           true    19m
+disallow-host-ports              true         enforce           true    19m
+disallow-host-process            true         enforce           true    19m
+disallow-privilege-escalation    true         enforce           true    19m
+disallow-privileged-containers   true         enforce           true    19m
+disallow-proc-mount              true         enforce           true    19m
+disallow-selinux                 true         enforce           true    19m
+require-run-as-non-root-user     true         enforce           true    19m
+require-run-as-nonroot           true         enforce           true    19m
+restrict-apparmor-profiles       true         enforce           true    19m
+restrict-seccomp                 true         enforce           true    19m
+restrict-seccomp-strict          true         enforce           true    19m
+restrict-sysctls                 true         enforce           true    19m
+restrict-volume-types            true         enforce             true    19m
 ```
 Now try to run an insecure workload using below command. You will see that the pod will be blocked by Pod Security Policies as the policies are deployed in the `Enforce` mode
 ```sh
