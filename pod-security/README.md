@@ -48,6 +48,7 @@ restrict-seccomp-strict:
     must be set to `RuntimeDefault` or `Localhost`. rule check-seccomp-strict[0] failed
     at path /spec/securityContext/seccompProfile/ rule check-seccomp-strict[1] failed
     at path /spec/containers/0/securityContext/'
+```
 ```sh
 Verify the policy reports
 ```sh
